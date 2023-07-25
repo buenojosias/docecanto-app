@@ -1,0 +1,7 @@
+{
+  "name": "doce-canto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
