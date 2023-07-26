@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form (ngSubmit)="submit()" [formGroup]="loginForm">
+    <!--     <ion-item class="ion-no-padding" lines="none">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <div class="label-float" [class.invalid]="loginForm.controls.username.errors && (loginForm.controls.username.dirty || loginForm.controls.username.touched)">
+        <input type="text" formControlName="username" placeholder="Informe seu nome de usuário" />
+        <label>Username</label>
+      </div>
+    </ion-item>
+<div *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.dirty || loginForm.controls.username.touched)" class="validator_error">
+      <p *ngIf="loginForm.controls.username.errors.required">É necessário informar seu username.</p>
+    </div> -->
+
+    <!-- <ion-item class="ion-no-padding" lines="none">
+      <ion-icon name="lock-open-outline" slot="start"></ion-icon>
+      <div class="label-float" [class.invalid]="loginForm.controls.password.errors && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+        <input type="text" formControlName="password" placeholder="Informe seu nome de usuário" />
+        <label>Senha</label>
+      </div>
+    </ion-item>
+    <div *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.dirty || loginForm.controls.password.touched)" class="validator_error">
+      <p *ngIf="loginForm.controls.password.errors.required">É necessário informar sua senha.</p>
+    </div> -->
+
+    <ion-input type="text" formControlName="username" label="Username" label-placement="floating" fill="solid"
+      placeholder="Informe seu username" errorText="É necessário informar seu nome de usuário"></ion-input>
+    <br>
+
+    <ion-input type="password" formControlName="password" label="Senha" label-placement="floating" fill="solid"
+      placeholder="Informe sua senha" errorText="É necessário informar sua senha"></ion-input>
+    <br>
+
+    <ion-button type="submit" size="large" expand="block">Entrar</ion-button>
+  </form>
+
+</ion-content>

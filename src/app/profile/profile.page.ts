@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  async logout() {
+    await this.authService.doLogout().subscribe(
+      (res: any) => {
+        if (res['status'] == 'success') {
+          localStorage.clear();
+          this.router.navigate(['auth/login']);
+        }
+      },
+      (error: any) => {
+        if(error.status == 401)
+        {
+          localStorage.clear();
+          this.router.navigate(['auth/login']);
+        }
+      }
+    );
   }
 
 }
