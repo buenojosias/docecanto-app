@@ -15,7 +15,7 @@ export class EventService {
 
   token = localStorage.getItem('TOKEN_KEY');
 
-  list() {
+  list(): Observable<Event[]> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
     return this.http.get<Event[]>(`${API_URL}/events`, { headers: headers });
   }

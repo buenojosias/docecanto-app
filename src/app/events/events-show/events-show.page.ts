@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Event } from 'src/app/interfaces/event';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class EventsShowPage implements OnInit {
 
   event: any;
   showQuestion: boolean = false;
+  loading = true;
 
   constructor(
     public eventService: EventService,
@@ -27,6 +29,7 @@ export class EventsShowPage implements OnInit {
       (event) => {
         console.log(event);
         this.event = event;
+        this.loading = false;
         if(!this.event['data']['answer'])
           this.showQuestion = true;
       }

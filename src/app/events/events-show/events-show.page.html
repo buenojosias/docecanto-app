@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large" *ngIf="event">{{ event.title }}</ion-title>
@@ -34,7 +35,7 @@
           <ion-button (click)="sendAnswer('Sim')" expand="block" color="success">Sim</ion-button>
         </ion-col>
         <ion-col size="6">
-        <ion-button (click)="sendAnswer('Não')" expand="block" color="dark" fill="outline">Não</ion-button>
+        <ion-button (click)="sendAnswer('Não')" expand="block" color="medium" fill="outline">Não</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>

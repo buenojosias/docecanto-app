@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../services/event.service';
-import { Event } from '../interfaces/event';
+import { Event } from 'src/app/interfaces/event';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.page.html',
-  styleUrls: ['./events.page.scss'],
+  templateUrl: './events-list.page.html',
+  styleUrls: ['./events-list.page.scss'],
 })
-export class EventsPage implements OnInit {
+export class EventsListPage implements OnInit {
 
-  events: any = [];
+  events: Event[] = [];
+  loading = true;
 
   constructor(
     private eventService: EventService
@@ -32,10 +33,12 @@ export class EventsPage implements OnInit {
     this.eventService.list().subscribe(
       (items) => {
         this.events = items;
+        this.loading = false;
+        console.log(this.events);
       },
-      (error: any) => {
-        console.error(error.status)
-      }
+      // (error: any) => {
+      //   console.error(error.status)
+      // }
     )
   }
 
