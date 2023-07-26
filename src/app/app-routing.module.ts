@@ -8,6 +8,12 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthenticatedGuard]
   },
+
+  {
+    path: 'eventos/:id',
+    loadChildren: () => import('./events/events-show/events-show.module').then( m => m.EventsShowPageModule)
+  },
+
   {
     path: 'auth/login',
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)

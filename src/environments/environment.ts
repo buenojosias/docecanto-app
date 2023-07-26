@@ -15,4 +15,4 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
-export const API_URL = "https://doce-canto.local/api";
+export const API_URL = "http://doce-canto.local/api";
