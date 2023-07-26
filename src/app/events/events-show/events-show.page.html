@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/eventos"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="event">{{ event.title }}</ion-title>
-    <ion-buttons *ngIf="event && event.data.is_presentation" slot="end">
+    <ion-buttons *ngIf="event && event.is_presentation" slot="end">
       <ion-button>
         <ion-icon slot="icon-only" name="musical-notes"></ion-icon>
       </ion-button>

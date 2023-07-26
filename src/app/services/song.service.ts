@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_URL } from 'src/environments/environment';
-import { Event } from '../interfaces/event';
 import { Response } from '../interfaces/response';
+import { Song } from '../interfaces/song';
+import { API_URL } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class SongService {
 
   constructor(
     private http: HttpClient
@@ -16,18 +16,18 @@ export class EventService {
 
   token = localStorage.getItem('TOKEN_KEY');
 
-  list(): Observable<Response<Event[]>> {
+  index(): Observable<any> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.get<Response<Event[]>>(`${API_URL}/events`, { headers: headers });
+    return this.http.get<any>(`${API_URL}/songs`, { headers: headers });
   }
 
-  show(id: number): Observable<Response<Event>> {
+  list(): Observable<Response<Song[]>> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.get<Response<Event>>(`${API_URL}/events/${id}`, { headers: headers });
+    return this.http.get<Response<Song[]>>(`${API_URL}/songs`, { headers: headers });
   }
 
-  syncAnswer(data: any) {
+  show(id: number): Observable<Response<Song>> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.post(`${API_URL}/events/sync-answer`, data, { headers: headers });
+    return this.http.get<Response<Song>>(`${API_URL}/songs/${id}`, { headers: headers })
   }
 }

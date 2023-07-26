@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'eventos/:id',
     loadChildren: () => import('./events/events-show/events-show.module').then( m => m.EventsShowPageModule)
   },
+  {
+    path: 'musicas/:number',
+    loadChildren: () => import('./songs/songs-show/songs-show.module').then( m => m.SongsShowPageModule)
+  },
 
   {
     path: 'auth/login',
@@ -22,7 +26,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
-  }
+  },
 ];
 @NgModule({
   imports: [

@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'musicas',
-        loadChildren: () => import('../songs/songs.module').then(m => m.SongsPageModule)
+        loadChildren: () => import('../songs/songs-list/songs-list.module').then(m => m.SongsListPageModule)
       },
       {
         path: 'eventos',
@@ -40,4 +40,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

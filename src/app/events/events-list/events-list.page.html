@@ -19,7 +19,7 @@
   <div *ngIf="!loading">
     <ion-card *ngFor="let event of events" [routerLink]="['/eventos', event.id]">
       <ion-card-header>
-        <ion-card-subtitle>{{ event.date | date: 'dd/MM/yyyy' }}</ion-card-subtitle>
+        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
         <ion-card-title>{{ event.title }}</ion-card-title>
       </ion-card-header>
       <ion-card-content *ngIf="event.local">

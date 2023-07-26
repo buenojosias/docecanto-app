@@ -10,7 +10,7 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventsShowPage implements OnInit {
 
-  event: any;
+  event?: Event;
   showQuestion: boolean = false;
   loading = true;
 
@@ -20,18 +20,18 @@ export class EventsShowPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.getEvent(id);
+    this.getEvent();
   }
 
-  getEvent(id: any) {
+  getEvent() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.eventService.show(id).subscribe(
       (event) => {
-        console.log(event);
-        this.event = event;
+        this.event = event.data;
         this.loading = false;
-        if(!this.event['data']['answer'])
-          this.showQuestion = true;
+        console.log(event);
+        // if(!this.event?['data'])
+        //   this.showQuestion = true;
       }
     );
   }
