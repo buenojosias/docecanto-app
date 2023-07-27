@@ -27,6 +27,11 @@ export class SongService {
     return this.http.get<Response<Category>>(`${API_URL}/songs/category/${id}`, { headers: headers });
   }
 
+  listFavorites(): Observable<Response<Song>> {
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    return this.http.get<Response<Song>>(`${API_URL}/songs/favorite`, { headers: headers });
+  }
+
   show(id: number): Observable<Response<Song>> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
     return this.http.get<Response<Song>>(`${API_URL}/songs/${id}`, { headers: headers })
@@ -34,6 +39,6 @@ export class SongService {
 
   syncFavorite(data: any): Observable<any> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.post<any>(`${API_URL}/songs/sync`, data, { headers: headers });
+    return this.http.post<any>(`${API_URL}/songs/favorite`, data, { headers: headers });
   }
 }

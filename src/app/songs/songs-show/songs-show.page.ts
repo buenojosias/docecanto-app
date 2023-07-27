@@ -52,7 +52,7 @@ export class SongsShowPage implements OnInit {
         if(res.success === true) {
           if(data.action === 'attach') {
             this.isFavorite = true;
-            const msg = 'Música adicionada à favoritas.'
+            const msg = 'Música adicionada às favoritas.'
             this.presentToast(msg)
           } else {
             this.isFavorite = false;
@@ -72,7 +72,6 @@ export class SongsShowPage implements OnInit {
       message: message,
       duration: 2000,
     });
-
     await toast.present();
   }
 
