@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { API_URL } from 'src/environments/environment';
 import { Event } from '../interfaces/event';
 import { Response } from '../interfaces/response';
+import { Song } from '../interfaces/song';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,13 @@ export class EventService {
     return this.http.get<Response<Event>>(`${API_URL}/events/${id}`, { headers: headers });
   }
 
-  syncAnswer(data: any) {
+  songs(id: number): Observable<Response<Song>> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.post(`${API_URL}/events/sync-answer`, data, { headers: headers });
+    return this.http.get<Response<Song>>(`${API_URL}/events/${id}/songs`, { headers: headers });
+  }
+
+  syncAnswer(data: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    return this.http.post<any>(`${API_URL}/events/sync-answer`, data, { headers: headers });
   }
 }

@@ -3,11 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/eventos"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="event">{{ event.title }}</ion-title>
-    <ion-buttons *ngIf="event && event.is_presentation" slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="musical-notes"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="event && event.is_presentation" [routerLink]="['/eventos', event.id, 'musicas']" color="primary">Músicas</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -28,25 +25,39 @@
 
 </ion-content>
 <ion-footer>
-
-  {{ showQuestion }}
-
-  <ion-card *ngIf="showQuestion" color="light" class="m-0">
+  <ion-card *ngIf="event && showQuestion" color="light" class="m-0">
     <ion-card-content>
       <h2 class="text-center">Você vai participar deste evento?</h2>
       <ion-row>
-        <ion-col size="6">
+        <ion-col [size]="event.answer ? '4' : '6'">
           <ion-button (click)="sendAnswer('Sim')" expand="block" color="success">Sim</ion-button>
         </ion-col>
-        <ion-col size="6">
-        <ion-button (click)="sendAnswer('Não')" expand="block" color="medium" fill="outline">Não</ion-button>
+        <ion-col [size]="event.answer ? '4' : '6'">
+          <ion-button (click)="sendAnswer('Não')" expand="block" color="danger" fill="outline">Não</ion-button>
+        </ion-col>
+        <ion-col *ngIf="event.answer" [size]="event.answer ? '4' : '6'">
+          <ion-button (click)="displayQuestion(false)" expand="block" color="dark" fill="outline">Cancelar</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="!showQuestion" color="light" class="m-0">
-    Já foi respondido.
+  <ion-card *ngIf="event && !showQuestion" color="light" class="m-0">
+    <ion-card-content>
+      <div class="flex items-center gap-4">
+        <div class="grow">
+          <h2>
+            Você respondeu que <span *ngIf="event.answer === 'Não'" class="font-semibold text-red-900">não</span> vai
+            participar deste evento.
+          </h2>
+        </div>
+        <div class="grow p-0">
+          <ion-button (click)="displayQuestion(true)" fill="clear">
+            Alterar
+          </ion-button>
+        </div>
+      </div>
+    </ion-card-content>
   </ion-card>
 
 </ion-footer>
