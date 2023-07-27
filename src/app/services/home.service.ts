@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URL } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  getHome(data = {username: 'josias', password: '123456'}) {
-    // let headers = new HttpHeaders({ 'Accept': 'application/json', 'Authorization':`Bearer ${this.token}` });
-    // return this.httpClient.post(`${API_URL}/auth/login`, data, { headers: headers });
-    // return this.httpClient.get(`${API_URL}/`, { headers: headers });
+  token = localStorage.getItem('TOKEN_KEY');
+
+  getHome(): Observable<any> {
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    return this.http.get(`${API_URL}/home`, { headers: headers });
   }
 
 }

@@ -13,6 +13,10 @@ const routes: Routes = [
       },
       {
         path: 'musicas',
+        loadChildren: () => import('../songs/songs-index/songs-index.module').then(m => m.SongsIndexPageModule)
+      },
+      {
+        path: 'musicas/categorias/:id',
         loadChildren: () => import('../songs/songs-list/songs-list.module').then(m => m.SongsListPageModule)
       },
       {

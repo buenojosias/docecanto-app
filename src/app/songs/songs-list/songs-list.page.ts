@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/interfaces/category';
 import { Song } from 'src/app/interfaces/song';
 import { SongService } from 'src/app/services/song.service';
 
@@ -9,25 +11,27 @@ import { SongService } from 'src/app/services/song.service';
 })
 export class SongsListPage implements OnInit {
 
-  categories: any[] = [];
-  songs: any[] = [];
+  category?: Category;
+  songs: any;
   loading = true;
 
   constructor(
-    private songService: SongService
+    private songServive: SongService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.songService.index().subscribe((items) => {
-      this.categories = items.data.categories;
-      this.songs = items.data.songs;
-      console.log(this.categories, this.songs);
-      // const data = items.data;
-      // this.songs = data;
-      this.loading = false;
+    this.getSongs();
+  }
 
-      // console.log(data);
-    })
+  getSongs() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.songServive.list(id).subscribe(
+      (category) => {
+        this.category = category.data;
+        this.songs = this.category.songs;
+        this.loading = false;
+      });
   }
 
 }

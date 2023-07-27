@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="w-full mt-4 mb-6 flex justify-start">
+    <img src="../assets/images/logotipo.png" class="w-1/2" alt="">
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+
+    <h4 class="my-0">Olá,</h4>
+    <h2 class="mt-0 mb-4">{{ name }}</h2>
+
+    <ion-card color="secondary" class="mx-0 mt-4">
+      <img src="../assets/images/birthday-ill.png" alt="">
+      <ion-card-content *ngIf="birthday">
+        <ion-card-subtitle>Aniversariante do dia</ion-card-subtitle>
+        <ion-card-title>{{ birthday.name }}</ion-card-title>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="light" class="mx-0 mt-4">
+      <ion-card-header>
+        <ion-card-title>Próximo evento</ion-card-title>
+      </ion-card-header>
+      <img src="../assets/images/callendar-ill.png" alt="">
+      <ion-card-content *ngIf="event">
+        <h2 class="font-semibold">{{ event.title }}</h2>
+        <p>{{ event.date | date: 'dd/MM/Y' }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="mx-0 mt-4">
+      <img src="../assets/images/song-ill.png" alt="">
+      <ion-card-header color="medium">
+        <ion-card-title>Músicas descadas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-no-padding">
+        <ion-list>
+          <ion-item *ngFor="let song of songs" lines="none" [routerLink]="['/musicas', song.number]">
+            <div class="w-10 text-md font-semibold">{{ song.number }}</div>
+            <ion-label>
+              <h2>{{ song.title }}</h2>
+              <p>{{ song.resume }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

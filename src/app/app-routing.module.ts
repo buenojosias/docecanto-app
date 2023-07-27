@@ -27,6 +27,10 @@ const routes: Routes = [
     path: '**',
     redirectTo: ''
   },
+  {
+    path: 'songs-index',
+    loadChildren: () => import('./songs/songs-index/songs-index.module').then( m => m.SongsIndexPageModule)
+  },
 ];
 @NgModule({
   imports: [

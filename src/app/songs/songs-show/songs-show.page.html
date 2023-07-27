@@ -3,11 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/musicas"></ion-back-button>
     </ion-buttons>
-    <ion-title>songs-show</ion-title>
+    <ion-title *ngIf="song">{{ song.number }}. {{ song.title }}</ion-title>
+    <ion-buttons slot="end" class="pr-4">
+      <ion-icon slot="icon-only" name="star" color="secondary" size="small"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">songs-show</ion-title>
@@ -16,7 +19,22 @@
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
 
   <div *ngIf="song">
-    <h1>{{ song.title }}</h1>
+    <h1>
+      <small class="border-l-4 border-yellow-500 pl-2 text-gray-500">{{ song.number }}</small>
+      {{ song.title }}
+    </h1>
+    <div class="my-4 flex flex-wrap gap-1">
+      <ion-badge *ngFor="let category of categories" color="medium">{{ category.name }}</ion-badge>
+    </div>
+    <div [innerHTML]="song.lyrics" class="lyrics"></div>
+
+    <br>
+    <ul>
+      <li>• Favorita</li>
+      <li>• Player</li>
+    </ul>
+    <br>
     {{ song | json }}
+
   </div>
 </ion-content>

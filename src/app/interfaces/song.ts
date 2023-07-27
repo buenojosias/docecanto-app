@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export interface Song {
   id: number;
   number: number;
@@ -5,4 +7,5 @@ export interface Song {
   resume: string;
   lyrics: string;
   detached: boolean;
+  categories?: Category;
 }

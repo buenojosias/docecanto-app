@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../interfaces/response';
 import { Song } from '../interfaces/song';
 import { API_URL } from 'src/environments/environment';
+import { Category } from '../interfaces/category';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class SongService {
     return this.http.get<any>(`${API_URL}/songs`, { headers: headers });
   }
 
-  list(): Observable<Response<Song[]>> {
+  list(id: number): Observable<Response<Category>> {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
-    return this.http.get<Response<Song[]>>(`${API_URL}/songs`, { headers: headers });
+    return this.http.get<Response<Category>>(`${API_URL}/songs/category/${id}`, { headers: headers });
   }
 
   show(id: number): Observable<Response<Song>> {
