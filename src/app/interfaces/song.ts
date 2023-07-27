@@ -8,4 +8,5 @@ export interface Song {
   lyrics: string;
   detached: boolean;
   categories?: Category;
+  isFavorite?: boolean;
 }

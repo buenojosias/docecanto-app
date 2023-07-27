@@ -31,4 +31,9 @@ export class SongService {
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
     return this.http.get<Response<Song>>(`${API_URL}/songs/${id}`, { headers: headers })
   }
+
+  syncFavorite(data: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    return this.http.post<any>(`${API_URL}/songs/sync`, data, { headers: headers });
+  }
 }

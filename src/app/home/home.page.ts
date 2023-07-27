@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   birthday?: any;
   event?: Event;
   songs: Song[] = [];
+  loading = true;
 
   constructor(
     private homeService: HomeService
@@ -34,8 +35,9 @@ export class HomePage implements OnInit {
     this.homeService.getHome().subscribe(
       (data) => {
         this.birthday = data.birthday;
-        this.event = data. event;
+        this.event = data.event;
         this.songs= data.songs;
+        this.loading = false;
       }
     );
   }

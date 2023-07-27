@@ -1,0 +1,11 @@
+.loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ion-spinner {
+      width: 40px;
+      height: 40px;
+      color: var(--ion-color-medium);
+  }
+}

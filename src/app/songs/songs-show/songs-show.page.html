@@ -4,8 +4,10 @@
       <ion-back-button defaultHref="/musicas"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="song">{{ song.number }}. {{ song.title }}</ion-title>
-    <ion-buttons slot="end" class="pr-4">
-      <ion-icon slot="icon-only" name="star" color="secondary" size="small"></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="song" (click)="syncFavorite()">
+        <ion-icon slot="icon-only" [name]="isFavorite ? 'star' : 'star-outline'" [color]="isFavorite ? 'secondary' : 'medium'" size="small"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
