@@ -3,10 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/musicas"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="song">{{ song.number }}. {{ song.title }}</ion-title>
+    <ion-title *ngIf="song" mode="ios">Música: {{ song.number }}</ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="song" (click)="syncFavorite()">
-        <ion-icon slot="icon-only" [name]="isFavorite ? 'star' : 'star-outline'" [color]="isFavorite ? 'secondary' : 'medium'" size="small"></ion-icon>
+        <ion-icon slot="icon-only" [name]="isFavorite ? 'star' : 'star-outline'"
+          [color]="isFavorite ? 'secondary' : 'medium'" size="small"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,24 +20,30 @@
     </ion-toolbar>
   </ion-header>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-
   <div *ngIf="song">
-    <h1>
-      <small class="border-l-4 border-yellow-500 pl-2 text-gray-500">{{ song.number }}</small>
-      {{ song.title }}
-    </h1>
+    <div class="flex items-end gap-2">
+      <div class="pr-2 border-r-2 border-yellow-500 text-gray-500 text-2xl">
+        {{ song.number }}
+      </div>
+      <div class="grow border-yellow-500">
+        <h1 class="m-0">
+          {{ song.title }}
+        </h1>
+      </div>
+    </div>
     <div class="my-4 flex flex-wrap gap-1">
       <ion-badge *ngFor="let category of categories" color="medium">{{ category.name }}</ion-badge>
     </div>
     <div [innerHTML]="song.lyrics" class="lyrics"></div>
-
-    <br>
-    <ul>
-      <li>• Favorita</li>
-      <li>• Player</li>
-    </ul>
-    <br>
-    {{ song | json }}
-
   </div>
 </ion-content>
+
+<ion-footer>
+  <div *ngIf="song && audio" class="mx-4 my-2">
+    <audio controls preload="none" class="w-full">
+      <source [src]="songUrl" type="audio/ogg">
+      <source [src]="songUrl" type="audio/mpeg">
+      Erro ao carregar player de áudio.
+    </audio>
+  </div>
+</ion-footer>

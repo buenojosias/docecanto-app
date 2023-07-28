@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song';
 import { SongService } from 'src/app/services/song.service';
 import { ViewEncapsulation } from '@angular/core'
-import { Category } from 'src/app/interfaces/category';
 import { ToastController } from '@ionic/angular';
+import { API_URL } from 'src/environments/environment';
+import { Audio } from 'src/app/interfaces/audio';
 
 @Component({
   selector: 'app-songs-show',
@@ -16,8 +17,10 @@ export class SongsShowPage implements OnInit {
 
   song?: Song;
   categories: any;
+  audio?: any;
   isFavorite?: boolean;
   loading = true;
+  songUrl?: string;
 
   constructor(
     private songService: SongService,
@@ -33,13 +36,20 @@ export class SongsShowPage implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('number'));
     this.songService.show(id).subscribe(
       (item) => {
-        console.log(item);
         this.song = item.data;
         this.categories = this.song.categories;
         this.isFavorite = this.song.isFavorite;
         this.loading = false;
+        if(this.song.audio) {
+          this.setAudio()
+        }
       }
     );
+  }
+
+  setAudio() {
+    this.audio = this.song!.audio;
+    this.songUrl = `${API_URL}/audio/${this.audio['filename']}`;
   }
 
   syncFavorite() {

@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../songs/songs-favorite/songs-favorite.module').then(m => m.SongsFavoritePageModule)
       },
       {
+        path: 'musicas/busca',
+        loadChildren: () => import('../songs/songs-search/songs-search.module').then(m => m.SongsSearchPageModule)
+      },
+      {
         path: 'eventos',
         loadChildren: () => import('../events/events-list/events-list.module').then(m => m.EventsListPageModule)
       },

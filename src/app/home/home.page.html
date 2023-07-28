@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar class="px-4">
-  <img src="../assets/images/logotipo.png" class="w-2/5" alt="">
-</ion-toolbar>
+    <img src="../assets/images/logotipo.png" class="w-2/5" alt="">
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
@@ -13,7 +13,7 @@
     <!-- <app-loading-component></app-loading-component> -->
 
     <ion-card *ngIf="birthday" color="secondary" class="mx-0 mt-4">
-      <img src="../assets/images/birthday-ill.png" alt="">
+      <img src="../assets/images/birthday-ill.png" class="object-cover h-24 w-full" alt="">
       <ion-card-content>
         <ion-card-subtitle>Aniversariante do dia</ion-card-subtitle>
         <ion-card-title>{{ birthday.name }}</ion-card-title>
@@ -24,7 +24,7 @@
       <ion-card-header>
         <ion-card-title>Próximo evento</ion-card-title>
       </ion-card-header>
-      <img src="../assets/images/callendar-ill.png" alt="">
+      <img src="../assets/images/callendar-ill.png" class="object-cover h-24 w-full" alt="">
       <ion-card-content *ngIf="event">
         <h2 class="font-semibold">{{ event.title }}</h2>
         <p>{{ event.date | date: 'dd/MM/Y' }}</p>
@@ -32,7 +32,7 @@
     </ion-card>
 
     <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4">
-      <img src="../assets/images/song-ill.png" alt="">
+      <img src="../assets/images/song-ill.png" class="object-cover h-24 w-full" alt="">
       <ion-card-header color="medium">
         <ion-card-title>Músicas destacadas</ion-card-title>
       </ion-card-header>

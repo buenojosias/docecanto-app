@@ -5,6 +5,9 @@
       <ion-button [routerLink]="['/musicas/favoritas']" color="primary">Favoritas</ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (click)="goSearch()" placeholder="Buscar música"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -13,12 +16,6 @@
       <ion-title size="large">Músicas</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ul>
-    <li>• Favoritas</li>
-    <li>• Busca</li>
-  </ul>
-
   <div>
     <h3 class="font-semibold ion-padding">Destacadas</h3>
     <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>

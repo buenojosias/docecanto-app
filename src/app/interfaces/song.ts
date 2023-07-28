@@ -1,3 +1,4 @@
+import { Audio } from "./audio";
 import { Category } from "./category";
 
 export interface Song {
@@ -9,4 +10,5 @@ export interface Song {
   detached: boolean;
   categories?: Category;
   isFavorite?: boolean;
+  audio?: string;
 }

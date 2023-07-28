@@ -4,26 +4,23 @@
       <ion-back-button defaultHref="/eventos"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button *ngIf="event && event.is_presentation" [routerLink]="['/eventos', event.id, 'musicas']" color="primary">Músicas</ion-button>
+      <ion-button *ngIf="event && event.is_presentation" [routerLink]="['/eventos', event.id, 'musicas']"
+        color="primary">Músicas</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large" *ngIf="event">{{ event.title }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  {{ event | json }}
-
-  <ul>
-    <li>• Músicas</li>
-  </ul>
-
+  <div *ngIf="event">
+    <h1>{{ event.title }}</h1>
+    <h4>{{ event.date | date: 'dd/MM/Y' }}</h4>
+    <h4>{{ event.time }}</h4>
+    <h4>{{ event.local }}</h4>
+    <p>{{ event.description }}</p>
+  </div>
 </ion-content>
+
 <ion-footer>
   <ion-card *ngIf="event && showQuestion" color="light" class="m-0">
     <ion-card-content>
@@ -41,7 +38,6 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-
   <ion-card *ngIf="event && !showQuestion" color="light" class="m-0">
     <ion-card-content>
       <div class="flex items-center gap-4">

@@ -29,7 +29,7 @@ export class EventsShowPage implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.eventService.show(id).subscribe(
       (event) => {
-        console.log(event);
+        console.log(event.data);
         this.event = event.data;
         if (!this.event.answer)
           this.showQuestion = true;
