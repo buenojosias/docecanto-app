@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header mode="ios" collapse="fade" [translucent]="true">
+  <ion-toolbar mode="md">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/musicas"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="song" mode="ios">Música: {{ song.number }}</ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="song" (click)="syncFavorite()">
         <ion-icon slot="icon-only" [name]="isFavorite ? 'star' : 'star-outline'"
-          [color]="isFavorite ? 'secondary' : 'medium'" size="small"></ion-icon>
+          [color]="isFavorite ? 'secondary' : 'medium'"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -26,7 +25,7 @@
         {{ song.number }}
       </div>
       <div class="grow border-yellow-500">
-        <h1 class="m-0">
+        <h1 class="m-0 font-semibold">
           {{ song.title }}
         </h1>
       </div>

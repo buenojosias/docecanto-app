@@ -1,0 +1,9 @@
+.event-date {
+  @apply w-14 py-1.5 flex flex-col items-center;
+  .event-day {
+    @apply text-lg font-semibold ;
+  }
+  .event-month {
+    @apply text-sm uppercase;
+  }
+}

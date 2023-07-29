@@ -17,27 +17,18 @@ export class EventsListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.eventService.list().subscribe((items) => {
-      const data = items.data;
-      data.map((item) => {
-        item.date = new Date(item.date).toLocaleDateString('pt-BR');
-      })
-      this.events = data;
-      this.loading = false;
-    })
+    this.getEvents()
   }
 
   getEvents() {
-    // this.eventService.list().subscribe(
-    //   (items) => {
-    //     this.events = items;
-    //     this.loading = false;
-    //     console.log(this.events);
-    //   },
-    // (error: any) => {
-    //   console.error(error.status)
-    // }
-    // )
+    this.eventService.list().subscribe((items) => {
+      const data = items.data;
+      // data.map((item) => {
+      //   item.date = new Date(item.date).toLocaleDateString('pt-BR');
+      // })
+      this.events = data;
+      this.loading = false;
+    })
   }
 
 }

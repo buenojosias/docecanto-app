@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>Músicas</ion-title>
     <ion-buttons slot="end">
@@ -6,39 +6,39 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar (click)="goSearch()" placeholder="Buscar música"></ion-searchbar>
+    <ion-searchbar mode="ios" (click)="goSearch()" placeholder="Buscar música"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Músicas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div>
-    <h3 class="font-semibold ion-padding">Destacadas</h3>
-    <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-    <ion-list *ngIf="songs">
-      <ion-item *ngFor="let song of songs" [routerLink]="['/musicas', song.number]">
-        <div class="w-10 text-md font-semibold">{{ song.number }}</div>
+<ion-content class="pt-4">
+  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
+  <ion-list>
+    <ion-list-header mode="ios">
+      <ion-label *ngIf="songs">Músicas fixadas</ion-label>
+    </ion-list-header>
+    <ion-card *ngFor="let song of songs">
+      <ion-item lines="none" [routerLink]="['/musicas', song.number]">
+        <div class="song-number">{{ song.number }}.</div>
         <ion-label>
-          <h2>{{ song.title }}</h2>
+          <h4>{{ song.title }}</h4>
           <p>{{ song.resume }}</p>
         </ion-label>
       </ion-item>
-    </ion-list>
+    </ion-card>
+  </ion-list>
 
-    <h3 class="font-semibold ion-padding">Categorias</h3>
-    <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-
-    <ion-list *ngIf="categories">
-      <ion-item *ngFor="let category of categories" [routerLink]="['/musicas/categorias', category.id]">
+  <ion-list>
+    <ion-list-header mode="ios">
+      <ion-label *ngIf="categories">Categorias</ion-label>
+    </ion-list-header>
+    <ion-card *ngFor="let category of categories" class="bordered-card">
+      <ion-item lines="none" [routerLink]="['/musicas/categorias', category.id]">
         <ion-label>
-          <h2>{{ category.name }}</h2>
+          <h4>{{ category.name }}</h4>
           <p>{{ category.songs_count }} músicas</p>
         </ion-label>
       </ion-item>
-    </ion-list>
-  </div>
+    </ion-card>
+  </ion-list>
+
 </ion-content>

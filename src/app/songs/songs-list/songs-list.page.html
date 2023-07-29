@@ -1,34 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/musicas"></ion-back-button>
     </ion-buttons>
-  <ion-title>Músicas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar *ngIf="category">
-      <ion-title size="large">Músicas de {{ category.name }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-  <div *ngIf="category" class="ion-padding">
-    <h2>Músicas de</h2>
-    <h1>{{ category.name }}</h1>
-  </div>
-
   <ion-list>
-    <ion-item *ngFor="let song of songs" [routerLink]="['/musicas', song.number]">
-      <div class="w-10 text-md font-semibold">{{ song.number }}</div>
-      <ion-label>
-        <h2>{{ song.title }}</h2>
-        <p>{{ song.resume }}</p>
+    <ion-list-header mode="ios">
+      <ion-label *ngIf="category">
+        <small>Músicas de</small><br>
+        {{ category.name }}
       </ion-label>
-      <ion-icon *ngIf="song.detached" slot="end" name="bookmark" size="small" color="secondary"></ion-icon>
-    </ion-item>
+    </ion-list-header>
+    <ion-card *ngFor="let song of songs">
+      <ion-item lines="none" [routerLink]="['/musicas', song.number]">
+        <div class="song-number">{{song.number}}.</div>
+        <ion-label>
+          <h4>{{song.title}}</h4>
+          <p>{{song.resume}}</p>
+        </ion-label>
+        <ion-icon *ngIf="song.detached" slot="end" name="bookmark" color="secondary"></ion-icon>
+      </ion-item>
+    </ion-card>
   </ion-list>
-
 </ion-content>

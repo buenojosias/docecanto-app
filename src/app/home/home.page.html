@@ -1,17 +1,24 @@
-<ion-header [translucent]="true" class="ion-no-border">
+<ion-header mode="ios" collapse="fade" [translucent]="true">
   <ion-toolbar class="px-4">
-    <img src="../assets/images/logotipo.png" class="w-2/5" alt="">
+    <img src="../assets/images/logotipo.png" class="w-2/4 my-4" alt="">
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <div>
+<ion-content>
 
-    <h4 class="my-0">Olá,</h4>
-    <h2 class="mt-0 mb-4">{{ name }}</h2>
+  <ion-list-header mode="ios">
+    <ion-label class="mt-0">
+      <small>Olá</small><br>
+      {{ name }}
+    </ion-label>
+  </ion-list-header>
 
-    <!-- <app-loading-component></app-loading-component> -->
+  <!-- <h4 class="my-0">Olá,</h4>
+    <h2 class="mt-0 mb-4">{{ name }} bbb</h2> -->
 
+  <!-- <app-loading-component></app-loading-component> -->
+
+  <div class="px-4">
     <ion-card *ngIf="birthday" color="secondary" class="mx-0 mt-4">
       <img src="../assets/images/birthday-ill.png" class="object-cover h-24 w-full" alt="">
       <ion-card-content>
@@ -19,6 +26,16 @@
         <ion-card-title>{{ birthday.name }}</ion-card-title>
       </ion-card-content>
     </ion-card>
+
+
+    <div class="home-card md hydrated">
+      <div class="icon with-bg">
+        <ion-icon name="bookmark" slot="start"></ion-icon>
+      </div>
+      <div class="label">
+        <p>Músicas fixadas</p>
+      </div>
+    </div>
 
     <ion-card *ngIf="event" color="light" class="mx-0 mt-4">
       <ion-card-header>
@@ -32,10 +49,10 @@
     </ion-card>
 
     <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4">
-      <img src="../assets/images/song-ill.png" class="object-cover h-24 w-full" alt="">
-      <ion-card-header color="medium">
-        <ion-card-title>Músicas destacadas</ion-card-title>
+      <ion-card-header color="primary">
+        <ion-card-title>Músicas fixadas</ion-card-title>
       </ion-card-header>
+      <img src="../assets/images/song-ill.png" class="object-cover h-16 w-full" alt="">
       <ion-card-content class="ion-no-padding">
         <ion-list>
           <ion-item *ngFor="let song of songs" lines="none" [routerLink]="['/musicas', song.number]">

@@ -1,3 +1,60 @@
+ion-header {
+  // ion-toolbar {
+  //     --background: rgb(128,15,125,1);
+  //     --background: linear-gradient(90deg, rgba(128,15,125,1) 0%, rgba(121,9,176,1) 100%);
+  //     ion-title, ion-buttons {
+  //         color: var(--ion-color-light);
+  //         font-weight: 400;
+  //     }
+  // }
+}
+// .radius {
+//   min-height: 18px;
+//   width: 100%;
+//   background: #FFF;
+//   border-radius: 18px 18px 0 0;
+// }
+// ion-content {
+//   --padding-top: 0 !important;
+// }
+// ion-list {
+//   padding-top: 0 !important;
+// }
+// ion-item {
+//   span {
+//       width: 28px;
+//       margin-right: 8px;
+//       text-align: right;
+//       font-size: small;
+//       height: 100%;
+//       font-weight: bold;
+//       padding-top: 17px;
+//   }
+// }
+
+ion-list {
+  ion-list-header {
+    ion-label {
+      margin-top: 0
+    }
+  }
+}
+ion-item {
+  ion-label {
+    h2, h3, h4 {
+      font-weight: 500 !important;
+    }
+  }
+}
+
+div.song-number {
+  @apply w-10 py-1.5  font-semibold;
+}
+
+ion-card.bordered-card {
+  @apply border-l-4 border-[var(--ion-color-primary)];
+}
+
 .loading {
   height: 100%;
   display: flex;
@@ -7,5 +64,19 @@
       width: 40px;
       height: 40px;
       color: var(--ion-color-medium);
+  }
+}
+.empty {
+  padding-left: 10%;
+  padding-right: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  h4 {
+      font-weight: 600;
+      margin-bottom: 24px;
   }
 }

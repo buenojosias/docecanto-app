@@ -1,31 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Eventos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar>
-  <ion-list>
-    <ion-item *ngFor="let event of events" detail>
+  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
+  <h2 class="mx-4 mt-8 mb-6 font-semibold">Eventos</h2>
+
+  <ion-card *ngFor="let event of events" class="bordered-card">
+    <ion-item lines="none" class="-ml-4" [routerLink]="['/eventos', event.id]">
+      <div class="event-date">
+        <div class="event-day">{{ event.date | date: 'dd' }}</div>
+        <div class="event-month">{{ (event.date | date: 'MMM')?.replace('.','') }}</div>
+      </div>
       <ion-label>
-        <p>{{ event.date | date: 'dd/MM/yyyy' }}</p>
-        <h2>{{ event.title }}</h2>
+        <h4>{{ event.title }}</h4>
+        <p *ngIf="event.local">{{ event.local }}</p>
       </ion-label>
     </ion-item>
-  </ion-list> -->
-
-  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-  <div *ngIf="!loading">
-    <ion-card *ngFor="let event of events" [routerLink]="['/eventos', event.id]">
-      <ion-card-header>
-        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
-        <ion-card-title>{{ event.title }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content *ngIf="event.local">
-        {{ event.local }}
-      </ion-card-content>
-    </ion-card>
-  </div>
-
+  </ion-card>
 </ion-content>

@@ -1,11 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header mode="ios" collapse="fade" [translucent]="true">
+  <ion-toolbar mode="md">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/eventos"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button *ngIf="event && event.is_presentation" [routerLink]="['/eventos', event.id, 'musicas']"
-        color="primary">Músicas</ion-button>
+        color="tertiary">Músicas</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,12 +13,15 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <div *ngIf="event">
-    <h1>{{ event.title }}</h1>
-    <h4>{{ event.date | date: 'dd/MM/Y' }}</h4>
-    <h4>{{ event.time }}</h4>
-    <h4>{{ event.local }}</h4>
+    <h1 class="font-semibold">{{ event.title }}</h1>
+    <h6><ion-icon src="../../../assets/icon/calendar.svg" class="mr-2"></ion-icon>{{ event.date | date: 'd MMM Y' }}, {{
+      event.time }}</h6>
+    <h6 color="light"> <ion-icon src="../../../assets/icon/marker.svg" class="mr-1"></ion-icon> {{ event.local }}</h6>
+    <h4>Descrição</h4>
     <p>{{ event.description }}</p>
   </div>
+
+  <ion-button *ngIf="event && event.is_presentation" expand="block" [routerLink]="['/eventos', event.id, 'musicas']">Músicas</ion-button>
 </ion-content>
 
 <ion-footer>
@@ -43,12 +46,13 @@
       <div class="flex items-center gap-4">
         <div class="grow">
           <h2>
-            Você respondeu que <span *ngIf="event.answer === 'Não'" class="font-semibold text-red-900">não</span> vai
+            Você respondeu que <span *ngIf="event.answer === 'Não'"
+              class="font-semibold text-red-900 dark:text-[#ffc409]">não</span> vai
             participar deste evento.
           </h2>
         </div>
         <div class="grow p-0">
-          <ion-button (click)="displayQuestion(true)" fill="clear">
+          <ion-button (click)="displayQuestion(true)" fill="clear" color="tertiary">
             Alterar
           </ion-button>
         </div>
