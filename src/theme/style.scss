@@ -32,11 +32,9 @@ ion-header {
 //   }
 // }
 
-ion-list {
-  ion-list-header {
-    ion-label {
-      margin-top: 0
-    }
+ion-list-header {
+  ion-label {
+    margin-top: 0
   }
 }
 ion-item {
@@ -67,16 +65,10 @@ ion-card.bordered-card {
   }
 }
 .empty {
-  padding-left: 10%;
-  padding-right: 10%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 80%;
   text-align: center;
+  @apply w-9/12 mx-auto flex flex-col justify-center space-y-8 items-center;
   h4 {
       font-weight: 600;
-      margin-bottom: 24px;
   }
 }

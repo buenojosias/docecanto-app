@@ -28,16 +28,16 @@
     </ion-card>
 
 
-    <div class="home-card md hydrated">
+    <!-- <div class="home-card md hydrated">
       <div class="icon with-bg">
         <ion-icon name="bookmark" slot="start"></ion-icon>
       </div>
       <div class="label">
         <p>Músicas fixadas</p>
       </div>
-    </div>
+    </div> -->
 
-    <ion-card *ngIf="event" color="light" class="mx-0 mt-4">
+    <!-- <ion-card *ngIf="event" color="light" class="mx-0 mt-4">
       <ion-card-header>
         <ion-card-title>Próximo evento</ion-card-title>
       </ion-card-header>
@@ -46,13 +46,24 @@
         <h2 class="font-semibold">{{ event.title }}</h2>
         <p>{{ event.date | date: 'dd/MM/Y' }}</p>
       </ion-card-content>
+    </ion-card> -->
+
+    <ion-card *ngIf="event" class="mx-0 mt-4 border-l-4 border-amber-500">
+      <ion-item lines="none" [routerLink]="['/eventos', event.id]">
+        <ion-icon slot="start" name="calendar" size="large"></ion-icon>
+        <ion-label class="ion-text-wrap">
+          <h2>Próximo evento</h2>
+          <h2 class="font-semibold">{{ event.title }}</h2>
+          <p>{{ event.date | date: 'd MMM Y' }}</p>
+        </ion-label>
+      </ion-item>
     </ion-card>
 
-    <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4">
-      <ion-card-header color="primary">
-        <ion-card-title>Músicas fixadas</ion-card-title>
+    <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4 border-t-4 border-purple-600">
+      <img src="../assets/images/song-ill.jpg" class="object-cover h-24 w-full" alt="">
+      <ion-card-header>
+        <ion-card-title class="ion-border">Músicas fixadas</ion-card-title>
       </ion-card-header>
-      <img src="../assets/images/song-ill.png" class="object-cover h-16 w-full" alt="">
       <ion-card-content class="ion-no-padding">
         <ion-list>
           <ion-item *ngFor="let song of songs" lines="none" [routerLink]="['/musicas', song.number]">

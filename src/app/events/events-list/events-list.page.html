@@ -14,4 +14,10 @@
       </ion-label>
     </ion-item>
   </ion-card>
+
+  <div class="empty" *ngIf="!loading && events.length == 0">
+    <h4>Nenhuma programação agendada!</h4>
+    <img src="./assets/images/empty_events.jpg" alt="">
+    <p>As programações da agenda do coral irão aparecer aqui.</p>
+  </div>
 </ion-content>

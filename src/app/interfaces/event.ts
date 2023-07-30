@@ -6,5 +6,6 @@ export interface Event {
   time?: string;
   description: string;
   is_presentation: boolean;
+  is_member: boolean;
   answer?: string;
 }

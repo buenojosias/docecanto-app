@@ -15,6 +15,7 @@ export class HomeService {
   token = localStorage.getItem('TOKEN_KEY');
 
   getHome(): Observable<any> {
+    console.log(this.token);
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
     return this.http.get(`${API_URL}/home`, { headers: headers });
   }

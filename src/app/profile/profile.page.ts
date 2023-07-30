@@ -22,14 +22,14 @@ export class ProfilePage implements OnInit {
       (res: any) => {
         if (res['status'] == 'success') {
           localStorage.clear();
-          this.router.navigate(['auth/login']);
+          this.router.navigate(['auth/login'], {replaceUrl: true});
         }
       },
       (error: any) => {
         if(error.status == 401)
         {
           localStorage.clear();
-          this.router.navigate(['auth/login']);
+          this.router.navigate(['auth/login'], {replaceUrl: true});
         }
       }
     );

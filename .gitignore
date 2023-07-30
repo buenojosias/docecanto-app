@@ -66,3 +66,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+ionic capacitor run android -l --external

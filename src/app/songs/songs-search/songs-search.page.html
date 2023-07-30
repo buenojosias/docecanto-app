@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="loading" *ngIf="searching"><ion-spinner name="dots"></ion-spinner></div>
-  <p *ngIf="searched && songs && !searching" class="px-4">Sua busca retornou {{ songs.length }} resultado(s)</p>
+  <p *ngIf="searched && !searching && songs.length" class="px-4">Sua busca retornou {{ songs.length }} resultado(s)</p>
   <ion-list *ngIf="searched && songs">
     <ion-card *ngFor="let song of songs">
       <ion-item lines="none" [routerLink]="['/musicas', song.number]">
@@ -27,5 +27,11 @@
   <div *ngIf="!searched" class="loading text-center ion-padding">
     Para buscar por uma música específica, digite um trecho da letra.<br>
     É necessário digitar no mínimo 3 palavras.
+  </div>
+
+  <div class="empty" *ngIf="searched && !searching && songs.length == 0">
+    <h4>Nenhum resultado encontrado</h4>
+    <img src="./assets/images/empty_search.png" width="200" alt="">
+    <p>Tente refazer a busca com outras palavras. Talvez ela ainda não tenha sido cadastrada no sistema.</p>
   </div>
 </ion-content>

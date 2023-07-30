@@ -25,7 +25,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-card *ngIf="event && showQuestion" color="light" class="m-0">
+  <ion-card *ngIf="event && event.is_member && showQuestion" color="light" class="m-0">
     <ion-card-content>
       <h2 class="text-center">Você vai participar deste evento?</h2>
       <ion-row>
@@ -41,7 +41,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="event && !showQuestion" color="light" class="m-0">
+  <ion-card *ngIf="event && event.is_member && !showQuestion" color="light" class="m-0">
     <ion-card-content>
       <div class="flex items-center gap-4">
         <div class="grow">

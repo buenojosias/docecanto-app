@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonTabs } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+
+  activeTab?: string;
+
+  @ViewChild('myTabs') tabs?: IonTabs;
+
+  getSelected(): void {
+    this.activeTab = this.tabs!.getSelected();
+  }
 
   constructor() {}
 
