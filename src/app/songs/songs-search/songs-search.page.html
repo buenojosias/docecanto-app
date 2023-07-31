@@ -5,9 +5,14 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar mode="ios" #searchbar placeholder="Buscar música" [debounce]="500" (ionChange)="handleChange($event)"
-      (ionClear)="clearSearch()"></ion-searchbar>
-  </ion-toolbar>
+    <ion-searchbar mode="ios"
+      #searchbar
+      placeholder="Buscar música"
+      [(ngModel)]="query"
+      (ngModelChange)="this.queryUpdate.next($event)"
+      (ionClear)="clearSearch()"
+    ></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>

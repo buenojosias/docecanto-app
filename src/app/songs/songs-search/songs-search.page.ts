@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSearchbar } from '@ionic/angular';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Song } from 'src/app/interfaces/song';
 import { SongService } from 'src/app/services/song.service';
 
@@ -10,13 +11,20 @@ import { SongService } from 'src/app/services/song.service';
 })
 export class SongsSearchPage implements OnInit {
 
+  query?: string;
+  queryUpdate = new Subject<string>();
   songs: Song[] = [];
   searched = false;
   searching = false;
 
   constructor(
     private songService: SongService,
-  ) { }
+  ) {
+    this.queryUpdate.pipe(
+      debounceTime(600),
+      distinctUntilChanged())
+      .subscribe(() => this.doSearch());
+  }
 
   @ViewChild('searchbar') searchbar?: IonSearchbar;
 
@@ -27,12 +35,12 @@ export class SongsSearchPage implements OnInit {
   ngOnInit() {
   }
 
-  handleChange(event: any) {
-    const query = event.target.value.toLowerCase();
+  doSearch() {
+    const query = this.query;
     const data: any = {
       query: query,
     }
-    if(this.countWords(query) < 3)
+    if(this.countWords(query!) < 3)
       return;
 
     this.searching = true;
@@ -40,7 +48,6 @@ export class SongsSearchPage implements OnInit {
       this.songs = items;
       this.searching = false;
       this.searched = true;
-      console.log(this.songs);
     });
   }
 
