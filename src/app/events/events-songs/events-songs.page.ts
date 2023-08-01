@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { Song } from 'src/app/interfaces/song';
 import { EventService } from 'src/app/services/event.service';
 
@@ -10,21 +9,21 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventsSongsPage implements OnInit {
 
+  @Input() eventId: number;
   songs: any;
-  loading = true;
+  loading = false;
 
   constructor(
-    private route: ActivatedRoute,
     private eventService: EventService
   ) { }
 
   ngOnInit() {
-    this.getSongs();
+    console.log(this.eventId);
+    // this.getSongs();
   }
 
   getSongs() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.eventService.songs(id).subscribe(
+    this.eventService.songs(this.eventId).subscribe(
       (items) => {
         this.songs = items;
         this.loading = false;

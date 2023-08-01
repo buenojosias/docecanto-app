@@ -36,8 +36,11 @@
     <div [innerHTML]="song.lyrics" class="lyrics"></div>
   </div>
 </ion-content>
-
 <ion-footer>
+  <app-miniplayer *ngIf="song && songUrl" [songUrl]="songUrl"></app-miniplayer>
+</ion-footer>
+
+<!-- <ion-footer>
   <div *ngIf="song && audio" class="mx-4 my-2">
     <audio controls preload="none" class="w-full">
       <source [src]="songUrl" type="audio/ogg">
@@ -45,4 +48,4 @@
       Erro ao carregar player de áudio.
     </audio>
   </div>
-</ion-footer>
+</ion-footer> -->

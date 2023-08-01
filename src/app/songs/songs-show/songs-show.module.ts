@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SongsShowPageRoutingModule } from './songs-show-routing.module';
 
 import { SongsShowPage } from './songs-show.page';
+import { MiniplayerComponent } from 'src/app/components/miniplayer/miniplayer.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { SongsShowPage } from './songs-show.page';
     IonicModule,
     SongsShowPageRoutingModule
   ],
-  declarations: [SongsShowPage]
+  declarations: [SongsShowPage, MiniplayerComponent]
 })
 export class SongsShowPageModule {}

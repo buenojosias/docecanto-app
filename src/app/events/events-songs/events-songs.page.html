@@ -1,25 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/eventos"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Músicas do evento</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-  <!-- <div *ngIf="category" class="ion-padding"> -->
-    <!-- <h2>Músicas do evento</h2>
-    <h1>{{ category.name }}</h1> -->
-  <!-- </div> -->
-
   <ion-list>
     <ion-item *ngFor="let song of songs" [routerLink]="['/musicas', song.number]">
       <div class="w-10 text-md font-semibold">{{ song.number }}</div>
       <ion-label>
-        <h2>{{ song.title }}</h2>
-        <p>{{ song.resume }}</p>
+        <!-- <h2>{{ song.title }}</h2>
+        <p>{{ song.resume }}</p> -->
       </ion-label>
     </ion-item>
   </ion-list>

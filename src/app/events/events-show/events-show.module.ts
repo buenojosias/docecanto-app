@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EventsShowPageRoutingModule } from './events-show-routing.module';
 
 import { EventsShowPage } from './events-show.page';
+import { EventSongsComponent } from 'src/app/event-songs/event-songs.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { EventsShowPage } from './events-show.page';
     EventsShowPageRoutingModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-PT' }],
-  declarations: [EventsShowPage]
+  declarations: [EventsShowPage, EventSongsComponent]
 })
 export class EventsShowPageModule {}

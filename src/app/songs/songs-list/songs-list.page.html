@@ -17,7 +17,7 @@
 
   <ion-card *ngFor="let song of songs">
     <ion-item lines="none" [routerLink]="['/musicas', song.number]">
-      <div class="song-number">{{song.number}}.</div>
+      <div class="song-number">{{song.number}}</div>
       <ion-label>
         <h4>{{song.title}}</h4>
         <p>{{song.resume}}</p>

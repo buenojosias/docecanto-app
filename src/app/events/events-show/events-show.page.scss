@@ -1,0 +1,8 @@
+h4 {
+  @apply font-semibold;
+}
+
+.infos {
+  color: var(--ion-color-dark-tint);
+  @apply flex items-center font-[500];
+}

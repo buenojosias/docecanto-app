@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Event } from 'src/app/interfaces/event';
@@ -10,7 +10,6 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./events-show.page.scss'],
 })
 export class EventsShowPage implements OnInit {
-
   event?: Event;
   showQuestion: boolean = false;
   loading = true;

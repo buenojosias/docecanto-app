@@ -14,10 +14,6 @@ const routes: Routes = [
     loadChildren: () => import('./events/events-show/events-show.module').then( m => m.EventsShowPageModule)
   },
   {
-    path: 'eventos/:id/musicas',
-    loadChildren: () => import('./events/events-songs/events-songs.module').then( m => m.EventsSongsPageModule)
-  },
-  {
     path: 'musicas/:number',
     loadChildren: () => import('./songs/songs-show/songs-show.module').then( m => m.SongsShowPageModule)
   },
