@@ -6,7 +6,7 @@
       <form (ngSubmit)="submit()" [formGroup]="loginForm">
         <ion-input type="text" formControlName="username" label="Username" label-placement="floating" fill="outline"
           placeholder="Informe seu username" errorText="É necessário informar seu nome de usuário"></ion-input>
-        <ion-input type="password" formControlName="password" label="Senha" label-placement="floating" fill="outline"
+        <ion-input type="password" class="mt-2" formControlName="password" label="Senha" label-placement="floating" fill="outline"
           placeholder="Informe sua senha" errorText="É necessário informar sua senha"></ion-input>
         <ion-button type="submit" expand="block">Entrar</ion-button>
       </form>

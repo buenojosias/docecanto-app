@@ -7,8 +7,8 @@
 </ion-header>
 
 <ion-content>
+  <h2 class="mx-4 mb-6 font-semibold">Músicas favoritas</h2>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
-  <h2 class="mx-4 mt-8 mb-6 font-semibold">Músicas favoritas</h2>
   <ion-card *ngFor="let song of songs">
     <ion-item-sliding>
       <ion-item lines="none" [routerLink]="['/musicas', song.number]">

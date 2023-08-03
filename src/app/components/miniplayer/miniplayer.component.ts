@@ -14,6 +14,11 @@ export class MiniplayerComponent implements OnInit {
 
   ngOnInit() { }
 
+  ngOnDestroy() {
+    if(this.isPlaying) {
+      this.pause();
+    }
+  }
 
   // VERSÃO 1
   @ViewChild("range", { static: false }) range: IonRange;

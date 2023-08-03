@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
+    private loadingController: LoadingController
   ) {
     this.loginForm = this.fb.group({
       'username': ['', [Validators.required]],
@@ -30,16 +33,34 @@ export class LoginPage implements OnInit {
   submit() {
     if(this.loginForm.invalid)
       return;
-
+    this.showLoading();
     this.authService.doLogin(this.loginForm.value).subscribe(
       (res: any) => {
+        this.loadingController.dismiss();
         if(res['login']) {
           localStorage.setItem('USER_NAME', res['data']['name'])
           localStorage.setItem('USER_ID', res['data']['id'])
           localStorage.setItem('TOKEN_KEY', res['token'])
           this.router.navigate(['/']);
+        } else {
+          this.presentAlert(res['message']);
         }
       });
+  }
+
+  async showLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Autenticando',
+    });
+    loading.present();
+  }
+
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   // getLoginStatus = () => this.authService.checkLogin() ? "Logado" : "Deslogado";
