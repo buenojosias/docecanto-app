@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URL } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,15 @@ import { Observable } from 'rxjs';
 export class HomeService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storageService: StorageService
   ) { }
 
-  token = localStorage.getItem('TOKEN_KEY');
+  // token = localStorage.getItem('TOKEN_KEY');
 
   getHome(): Observable<any> {
-    console.log(this.token);
-    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    const token = this.storageService.getToken();
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${token}` });
     return this.http.get(`${API_URL}/home`, { headers: headers });
   }
 

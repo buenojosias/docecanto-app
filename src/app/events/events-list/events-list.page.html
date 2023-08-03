@@ -1,4 +1,7 @@
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getEvents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <h2 class="mx-4 mt-8 mb-6 font-semibold">Eventos</h2>
 

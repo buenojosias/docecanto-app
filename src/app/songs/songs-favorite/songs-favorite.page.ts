@@ -22,11 +22,11 @@ export class SongsFavoritePage implements OnInit {
     this.getFavorites()
   }
 
-  getFavorites() {
+  getFavorites(event?: any) {
     this.songService.listFavorites().subscribe(
       (items) => {
         this.songs = items;
-        console.log(this.songs);
+        event?.target.complete();
         this.loading = false;
       }
     );

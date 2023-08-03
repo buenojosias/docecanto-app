@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getFavorites($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <h2 class="mx-4 mb-6 font-semibold">Músicas favoritas</h2>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <ion-card *ngFor="let song of songs">

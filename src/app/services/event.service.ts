@@ -5,6 +5,7 @@ import { API_URL } from 'src/environments/environment';
 import { Event } from '../interfaces/event';
 import { Response } from '../interfaces/response';
 import { Song } from '../interfaces/song';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +13,33 @@ import { Song } from '../interfaces/song';
 export class EventService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storageService: StorageService
   ) { }
 
-  token = localStorage.getItem('TOKEN_KEY');
+  // token = localStorage.getItem('TOKEN_KEY');
 
   list(): Observable<Response<Event[]>> {
-    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    const token = this.storageService.getToken();
+    let headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.get<Response<Event[]>>(`${API_URL}/events`, { headers: headers });
   }
 
   show(id: number): Observable<Response<Event>> {
-    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    const token = this.storageService.getToken();
+    let headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.get<Response<Event>>(`${API_URL}/events/${id}`, { headers: headers });
   }
 
   songs(id: number): Observable<Response<Song>> {
-    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    const token = this.storageService.getToken();
+    let headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.get<Response<Song>>(`${API_URL}/events/${id}/songs`, { headers: headers });
   }
 
   syncAnswer(data: any): Observable<any> {
-    let headers = new HttpHeaders({ 'Authorization':`Bearer ${this.token}` });
+    const token = this.storageService.getToken();
+    let headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     return this.http.post<any>(`${API_URL}/events/sync-answer`, data, { headers: headers });
   }
 }

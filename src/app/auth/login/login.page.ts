@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, IonModal, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
     });
   }
 
+  @ViewChild(IonModal) modal: IonModal;
   public loginForm: FormGroup;
 
   ngOnInit(
@@ -61,6 +62,10 @@ export class LoginPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  closeModal() {
+    this.modal.dismiss(null, 'cancel');
   }
 
   // getLoginStatus = () => this.authService.checkLogin() ? "Logado" : "Deslogado";

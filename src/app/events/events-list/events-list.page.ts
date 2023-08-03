@@ -20,14 +20,15 @@ export class EventsListPage implements OnInit {
     this.getEvents()
   }
 
-  getEvents() {
+  getEvents(event?: any) {
     this.eventService.list().subscribe((items) => {
-      const data = items.data;
-      // data.map((item) => {
-      //   item.date = new Date(item.date).toLocaleDateString('pt-BR');
-      // })
-      this.events = data;
+      this.events = items.data;
+      event?.target.complete();
       this.loading = false;
+    },
+    (error: any) => {
+      this.loading = false;
+      console.log(error.status);
     })
   }
 

@@ -24,12 +24,13 @@ export class SongsListPage implements OnInit {
     this.getSongs();
   }
 
-  getSongs() {
+  getSongs(event?: any) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.songServive.list(id).subscribe(
       (category) => {
         this.category = category.data;
         this.songs = this.category.songs;
+        event?.target.complete();
         this.loading = false;
       });
   }

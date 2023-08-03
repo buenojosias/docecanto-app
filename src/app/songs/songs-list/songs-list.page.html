@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getSongs($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <ion-list-header mode="ios">
     <ion-label *ngIf="category">

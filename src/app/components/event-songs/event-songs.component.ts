@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EventService } from '../services/event.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-event-songs',
