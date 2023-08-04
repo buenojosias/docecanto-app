@@ -17,8 +17,6 @@ export class EventService {
     private storageService: StorageService
   ) { }
 
-  // token = localStorage.getItem('TOKEN_KEY');
-
   list(): Observable<Response<Event[]>> {
     const token = this.storageService.getToken();
     let headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });

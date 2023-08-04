@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/interfaces/event';
+import { ErrorService } from 'src/app/services/error.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class EventsListPage implements OnInit {
   loading = true;
 
   constructor(
-    private eventService: EventService
+    private eventService: EventService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class EventsListPage implements OnInit {
     },
     (error: any) => {
       this.loading = false;
-      console.log(error.status);
+      this.errorService.handleError(error);
     })
   }
 

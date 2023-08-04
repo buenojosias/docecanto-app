@@ -4,6 +4,7 @@ import { Song } from 'src/app/interfaces/song';
 import { SongService } from 'src/app/services/song.service';
 import { IonRange, ToastController } from '@ionic/angular';
 import { API_URL } from 'src/environments/environment';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-songs-show',
@@ -22,6 +23,7 @@ export class SongsShowPage implements OnInit {
   constructor(
     private songService: SongService,
     private route: ActivatedRoute,
+    private errorService: ErrorService,
     private toastController: ToastController
   ) { }
 
@@ -33,8 +35,6 @@ export class SongsShowPage implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('number'));
     this.songService.show(id).subscribe(
       (item) => {
-        console.log(item.data);
-
         this.song = item.data;
         this.categories = this.song.categories;
         this.isFavorite = this.song.isFavorite;
@@ -42,6 +42,10 @@ export class SongsShowPage implements OnInit {
         if (this.song.audio) {
           this.setAudio()
         }
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
       }
     );
   }

@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Event } from 'src/app/interfaces/event';
+import { ErrorService } from 'src/app/services/error.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class EventsShowPage implements OnInit {
 
   constructor(
     public eventService: EventService,
+    public errorService: ErrorService,
     public route: ActivatedRoute,
     private toastController: ToastController
   ) { }
@@ -33,6 +35,10 @@ export class EventsShowPage implements OnInit {
         if (!this.event.answer)
           this.showQuestion = true;
         this.loading = false;
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
       }
     );
   }
@@ -51,7 +57,12 @@ export class EventsShowPage implements OnInit {
         } else {
           this.presentToast('Erro ao salvar resposta.');
         }
-      });
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
+      }
+    );
   }
 
   displayQuestion(display: boolean) {

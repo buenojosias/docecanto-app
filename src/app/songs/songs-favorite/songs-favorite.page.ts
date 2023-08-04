@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Song } from 'src/app/interfaces/song';
+import { ErrorService } from 'src/app/services/error.service';
 import { SongService } from 'src/app/services/song.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class SongsFavoritePage implements OnInit {
 
   constructor(
     private songService: SongService,
+    private errorService: ErrorService,
     private toastController: ToastController
   ) { }
 
@@ -40,7 +42,7 @@ export class SongsFavoritePage implements OnInit {
     const index = this.songs.findIndex((song: Song) => song.id === songId);
     this.songService.syncFavorite(data).subscribe(
       (res) => {
-        if(res.success === true) {
+        if (res.success === true) {
           const msg = 'Música removida das favoritas.'
           this.presentToast(msg)
           this.songs.splice(index, 1);
@@ -48,6 +50,10 @@ export class SongsFavoritePage implements OnInit {
           const msg = 'Erro ao remover das favoritas';
           this.presentToast(msg)
         }
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
       }
     );
   }

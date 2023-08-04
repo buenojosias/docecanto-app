@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StatusBar } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
+import { Device } from '@capacitor/device';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,13 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  initializeApp() {
+  async initializeApp() {
+    const deviceInfo = await Device.getInfo();
+    const isAndroid = deviceInfo.platform === 'android';
     this.platform.ready().then(() => {
-      this.setStatusBar();
+      if(isAndroid) {
+        this.setStatusBar();
+      }
     })
   }
 

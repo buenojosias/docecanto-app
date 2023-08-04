@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../services/home.service';
 import { Song } from '../interfaces/song';
 import { Event } from '../interfaces/event';
+import { ErrorService } from '../services/error.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ export class HomePage implements OnInit {
   loading = true;
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -36,8 +38,12 @@ export class HomePage implements OnInit {
       (data) => {
         this.birthday = data.birthday;
         this.event = data.event;
-        this.songs= data.songs;
+        this.songs = data.songs;
         this.loading = false;
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
       }
     );
   }

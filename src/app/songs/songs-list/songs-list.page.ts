@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
 import { Song } from 'src/app/interfaces/song';
+import { ErrorService } from 'src/app/services/error.service';
 import { SongService } from 'src/app/services/song.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class SongsListPage implements OnInit {
 
   constructor(
     private songServive: SongService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -32,7 +34,12 @@ export class SongsListPage implements OnInit {
         this.songs = this.category.songs;
         event?.target.complete();
         this.loading = false;
-      });
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
+      }
+    );
   }
 
 }

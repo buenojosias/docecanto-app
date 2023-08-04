@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSearchbar } from '@ionic/angular';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Song } from 'src/app/interfaces/song';
+import { ErrorService } from 'src/app/services/error.service';
 import { SongService } from 'src/app/services/song.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class SongsSearchPage implements OnInit {
 
   constructor(
     private songService: SongService,
+    private errorService: ErrorService
   ) {
     this.queryUpdate.pipe(
       debounceTime(600),
@@ -48,6 +50,10 @@ export class SongsSearchPage implements OnInit {
       this.songs = items;
       this.searching = false;
       this.searched = true;
+    },
+    (error: any) => {
+      this.searching = false;
+      this.errorService.handleError(error);
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error.service';
 import { SongService } from 'src/app/services/song.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class SongsIndexPage implements OnInit {
 
   constructor(
     private songService: SongService,
+    private errorService: ErrorService,
     private router: Router
   ) { }
 
@@ -23,6 +25,10 @@ export class SongsIndexPage implements OnInit {
       this.categories = items.data.categories;
       this.songs = items.data.songs;
       this.loading = false;
+    },
+    (error: any) => {
+      this.loading = false;
+      this.errorService.handleError(error);
     })
   }
 

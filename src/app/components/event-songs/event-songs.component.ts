@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EventService } from '../../services/event.service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-event-songs',
   templateUrl: './event-songs.component.html',
   styleUrls: ['./event-songs.component.scss'],
 })
-export class EventSongsComponent  implements OnInit {
+export class EventSongsComponent implements OnInit {
 
   @Input() eventId: any;
   songs: any;
@@ -14,13 +15,14 @@ export class EventSongsComponent  implements OnInit {
   loading = false;
 
   constructor(
-    private eventService: EventService
+    private eventService: EventService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() { }
 
   accordionGroupChange = (ev: any) => {
-    if(!this.loaded) {
+    if (!this.loaded) {
       this.getSongs();
     }
   };
@@ -32,6 +34,10 @@ export class EventSongsComponent  implements OnInit {
         this.songs = items;
         this.loaded = true;
         this.loading = false;
+      },
+      (error: any) => {
+        this.loading = false;
+        this.errorService.handleError(error);
       }
     );
   }
