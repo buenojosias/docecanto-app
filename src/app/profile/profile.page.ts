@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { AppLauncher } from '@capacitor/app-launcher';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,22 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  async openFacebook() {
+    const { value } = await AppLauncher.canOpenUrl({ url: 'com.facebook.katana' });
+    console.log('Can open url: ', value);
+    await AppLauncher.openUrl({ url: 'com.facebook.katana://page?id=1446618195568418' });
+  }
+
+  async openInstagram() {
+    const { value } = await AppLauncher.canOpenUrl({ url: 'com.instagram.android' });
+    console.log('Can open url: ', value);
+  }
+
+  async openYoutube() {
+    const { value } = await AppLauncher.canOpenUrl({ url: 'com.google.android.youtube' });
+    console.log('Can open url: ', value);
   }
 
   async logout() {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StatusBar } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
 import { Device } from '@capacitor/device';
+import { App } from '@capacitor/app';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   constructor(
     private platform: Platform,
   ) {
+    // this.checkVersion();
     this.initializeApp();
   }
 
@@ -24,6 +26,11 @@ export class AppComponent {
       }
     })
   }
+
+  // async checkVersion() {
+  //   const appInfo = (await App.getInfo()).version;
+  //   console.log('Versão:', appInfo);
+  // }
 
   async setStatusBar() {
     // await console.log(StatusBar.getInfo());
