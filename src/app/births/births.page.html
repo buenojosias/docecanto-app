@@ -23,7 +23,7 @@
   <ion-card *ngFor="let birth of births" class="mb-4 bordered-card">
     <ion-item lines="none">
       <ion-label>
-        <h2>{{ birth.name }}</h2>
+        <h2>{{ birth.short_name }}</h2>
         <p *ngIf="!birth.nearby">{{ birth.birth | date: 'd' }}.{{ (birth.birth | date: 'MMM')?.replace('.','') }}</p>
         <p *ngIf="birth.nearby">{{ birth.nearby }}</p>
       </ion-label>
@@ -31,9 +31,8 @@
   </ion-card>
 
   <div class="empty" *ngIf="!loading && births.length == 0">
-    <h4>Nenhuma programação agendada!</h4>
     <img src="./assets/images/empty_events.jpg" alt="">
-    <p>Nenhum aniversariante no período.</p>
+    <h4>Nenhum aniversariante no período.</h4>
   </div>
 
 </ion-content>
