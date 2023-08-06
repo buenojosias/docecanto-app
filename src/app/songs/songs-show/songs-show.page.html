@@ -13,11 +13,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">songs-show</ion-title>
-    </ion-toolbar>
-  </ion-header>
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <div *ngIf="song">
     <div class="flex items-end gap-2">

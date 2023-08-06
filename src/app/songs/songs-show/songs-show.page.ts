@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/interfaces/song';
 import { SongService } from 'src/app/services/song.service';
@@ -10,6 +10,7 @@ import { ErrorService } from 'src/app/services/error.service';
   selector: 'app-songs-show',
   templateUrl: './songs-show.page.html',
   styleUrls: ['./songs-show.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SongsShowPage implements OnInit {
 

@@ -34,7 +34,9 @@ export class AppComponent {
     this.platform.ready().then(() => {
       SplashScreen.hide();
       setTimeout(() => {
-        this.setStatusBar();
+        if (isAndroid) {
+          this.setStatusBar();
+        }
         this.routerHidden = false;
         this.splash.nativeElement.style.display = 'none';
       }, 4000)
