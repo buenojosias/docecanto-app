@@ -1,0 +1,39 @@
+<ion-header mode="ios" collapse="fade" [translucent]="true">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Aniversariantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-segment mode="ios" value="week" (ionChange)="changeSegment($event)" class="mb-4">
+      <ion-segment-button value="week">
+        <ion-label>Da semana</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="month">
+        <ion-label>Do mês</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
+  <ion-card *ngFor="let birth of births" class="mb-4 bordered-card">
+    <ion-item lines="none">
+      <ion-label>
+        <h2>{{ birth.name }}</h2>
+        <p *ngIf="!birth.nearby">{{ birth.birth | date: 'd' }}.{{ (birth.birth | date: 'MMM')?.replace('.','') }}</p>
+        <p *ngIf="birth.nearby">{{ birth.nearby }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <div class="empty" *ngIf="!loading && births.length == 0">
+    <h4>Nenhuma programação agendada!</h4>
+    <img src="./assets/images/empty_events.jpg" alt="">
+    <p>Nenhum aniversariante no período.</p>
+  </div>
+
+</ion-content>

@@ -22,7 +22,10 @@ const routes: Routes = [
     path: 'auth/login',
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
-
+  {
+    path: 'aniversariantes',
+    loadChildren: () => import('./births/births.module').then( m => m.BirthsPageModule)
+  },
   {
     path: '**',
     redirectTo: ''
