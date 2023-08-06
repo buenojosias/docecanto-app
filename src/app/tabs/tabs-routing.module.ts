@@ -32,8 +32,8 @@ const routes: Routes = [
         loadChildren: () => import('../events/events-list/events-list.module').then(m => m.EventsListPageModule)
       },
       {
-        path: 'perfil',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        path: 'menu',
+        loadChildren: () => import('../menu/menu.module').then(m => m.MenuPageModule)
       },
       {
         path: '',

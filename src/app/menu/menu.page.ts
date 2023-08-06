@@ -5,11 +5,11 @@ import { Platform } from '@ionic/angular';
 import { AppLauncher } from '@capacitor/app-launcher';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-menu',
+  templateUrl: './menu.page.html',
+  styleUrls: ['./menu.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class MenuPage implements OnInit {
 
   constructor(
     private authService: AuthService,
