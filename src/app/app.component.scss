@@ -1,0 +1,36 @@
+.splash {
+  @apply h-full h-full gap-4 pb-[20%] flex flex-col justify-center items-center bg-[#780c6f] bg-gradient-to-br from-[#780c6f] to-[#6C147B];
+
+  img.symbol {
+    @apply w-2/6;
+    animation: symbolAnimation 1s ease-in-out 0s 1 normal backwards;
+  }
+  img.logo {
+    @apply w-3/4;
+    animation: logoAnimation 1s ease-in-out 0.5s 1 normal backwards;
+  }
+}
+
+@keyframes symbolAnimation {
+	0% {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes logoAnimation {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

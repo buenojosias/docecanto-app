@@ -1,3 +1,7 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <div [hidden]="!routerHidden" #splash class="splash">
+      <img src="../assets/images/sc-simbolo.png" class="symbol" alt="">
+      <img src="../assets/images/sc-logotipo.png" class="logo" alt="">
+    </div>
+  <ion-router-outlet [hidden]="routerHidden"></ion-router-outlet>
 </ion-app>

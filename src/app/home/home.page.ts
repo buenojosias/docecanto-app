@@ -12,6 +12,7 @@ import { ErrorService } from '../services/error.service';
 export class HomePage implements OnInit {
 
   name?: string = '';
+  message?: string;
   birthday?: any;
   event?: Event;
   songs: Song[] = [];
@@ -36,6 +37,7 @@ export class HomePage implements OnInit {
   getHome() {
     this.homeService.getHome().subscribe(
       (data) => {
+        this.message = data.message;
         this.birthday = data.birthday;
         this.event = data.event;
         this.songs = data.songs;

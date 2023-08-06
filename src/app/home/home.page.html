@@ -8,17 +8,26 @@
 
   <ion-list-header mode="ios">
     <ion-label class="mt-0">
-      <small>Olá</small><br>
-      {{ name }}
+      Olá, {{ name }}
     </ion-label>
   </ion-list-header>
 
   <!-- <h4 class="my-0">Olá,</h4>
     <h2 class="mt-0 mb-4">{{ name }} bbb</h2> -->
 
-  <!-- <app-loading-component></app-loading-component> -->
+  <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
 
   <div class="px-4">
+
+    <ion-card *ngIf="message" color="light" class="mx-0 my-4 border-b-2 border-amber-500">
+      <ion-card-content class="flex gap-4 items-start">
+        <ion-icon name="sparkles" color="secondary" size="large" class="mt-1"></ion-icon>
+        <div>
+          {{ message }}
+        </div>
+      </ion-card-content>
+    </ion-card>
+
     <ion-card *ngIf="birthday" color="secondary" class="mx-0 mt-4">
       <img src="../assets/images/birthday-ill.png" class="object-cover h-24 w-full" alt="">
       <ion-card-content>
@@ -60,20 +69,18 @@
     </ion-card>
 
     <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4 border-t-4 border-purple-600">
-      <img src="../assets/images/song-ill.jpg" class="object-cover h-24 w-full" alt="">
-      <ion-card-header>
-        <ion-card-title class="ion-border">Músicas fixadas</ion-card-title>
+      <!-- <img src="../assets/images/song-ill.jpg" class="object-cover h-24 w-full" alt=""> -->
+      <ion-card-header color="light">
+        <ion-card-title>Músicas fixadas</ion-card-title>
       </ion-card-header>
       <ion-card-content class="ion-no-padding">
-        <ion-list>
-          <ion-item *ngFor="let song of songs" lines="none" [routerLink]="['/musicas', song.number]">
-            <div class="w-10 text-md font-semibold">{{ song.number }}</div>
-            <ion-label>
-              <h2>{{ song.title }}</h2>
-              <p>{{ song.resume }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
+        <ion-item *ngFor="let song of songs" [routerLink]="['/musicas', song.number]">
+          <div class="w-10 text-md font-semibold">{{ song.number }}</div>
+          <ion-label>
+            <h2>{{ song.title }}</h2>
+            <p>{{ song.resume }}</p>
+          </ion-label>
+        </ion-item>
       </ion-card-content>
     </ion-card>
   </div>
