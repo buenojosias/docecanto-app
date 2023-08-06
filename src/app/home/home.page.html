@@ -63,7 +63,8 @@
         <ion-label class="ion-text-wrap">
           <h2>Próximo evento</h2>
           <h2 class="font-semibold">{{ event.title }}</h2>
-          <p>{{ event.date | date: 'd MMM Y' }}</p>
+          <p *ngIf="!event.nearby">{{ event.date | date: 'd MMM Y' }}</p>
+          <p *ngIf="event.nearby">{{ event.nearby }}</p>
         </ion-label>
       </ion-item>
     </ion-card>

@@ -3,6 +3,7 @@ export interface Event {
   title: string;
   local: string;
   date: string;
+  nearby?: string;
   time?: string;
   description: string;
   is_presentation: boolean;

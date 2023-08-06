@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, IonModal, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private alertController: AlertController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private errorService: ErrorService,
   ) {
     this.loginForm = this.fb.group({
       'username': ['', [Validators.required]],
@@ -46,7 +48,12 @@ export class LoginPage implements OnInit {
         } else {
           this.presentAlert(res['message']);
         }
-      });
+      },
+      (error: any) => {
+        this.alertController.dismiss();
+        this.errorService.handleError(error);
+      }
+    );
   }
 
   async showLoading() {

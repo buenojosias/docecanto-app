@@ -26,4 +26,10 @@ export class AuthService {
     return !!localStorage.getItem('TOKEN_KEY');
   }
 
+  changePassword(data: any) {
+    const token = localStorage.getItem('TOKEN_KEY');
+    let headers = new HttpHeaders({ 'Authorization':`Bearer ${token}` });
+    return this.httpClient.post(`${API_URL}/auth/password`, data, { headers: headers });
+  }
+
 }
