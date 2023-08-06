@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { API_URL } from 'src/environments/environment';
 
 @Injectable({
@@ -26,10 +27,10 @@ export class AuthService {
     return !!localStorage.getItem('TOKEN_KEY');
   }
 
-  changePassword(data: any) {
+  changePassword(data: any): Observable<any> {
     const token = localStorage.getItem('TOKEN_KEY');
     let headers = new HttpHeaders({ 'Authorization':`Bearer ${token}` });
-    return this.httpClient.post(`${API_URL}/auth/password`, data, { headers: headers });
+    return this.httpClient.post<any>(`${API_URL}/auth/password`, data, { headers: headers });
   }
 
 }
