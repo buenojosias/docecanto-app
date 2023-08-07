@@ -33,6 +33,10 @@ export class LoginPage implements OnInit {
 
   ) { }
 
+  ionViewWillEnter() {
+    this.checkIsLogged();
+  }
+
   submit() {
     if(this.loginForm.invalid)
       return;
@@ -73,6 +77,12 @@ export class LoginPage implements OnInit {
 
   closeModal() {
     this.modal.dismiss(null, 'cancel');
+  }
+
+  checkIsLogged() {
+    if(this.authService.checkLogin()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
   // getLoginStatus = () => this.authService.checkLogin() ? "Logado" : "Deslogado";

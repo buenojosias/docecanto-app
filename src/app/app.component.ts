@@ -39,7 +39,7 @@ export class AppComponent {
         }
         this.routerHidden = false;
         this.splash.nativeElement.style.display = 'none';
-      }, 400)
+      }, 4000)
     });
   }
 
