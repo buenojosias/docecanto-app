@@ -1,3 +1,8 @@
+.app {
+  @apply lg:max-w-md lg:mx-auto lg:shadow;
+  // --background: var(--ion-background-color);
+}
+
 .splash {
   @apply h-full h-full gap-4 pb-[20%] flex flex-col justify-center items-center bg-[#780c6f] bg-gradient-to-br from-[#780c6f] to-[#6C147B];
 

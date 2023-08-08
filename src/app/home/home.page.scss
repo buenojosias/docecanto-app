@@ -1,3 +1,8 @@
+// ion-header {
+//   ion-toolbar {
+//     --background: var(--ion-background-color)
+//   }
+// }
 .home-card {
   margin: 16px 12px;
   height: 78px;
@@ -32,5 +37,30 @@
       ion-icon {
           font-size: 42px;
       }
+  }
+}
+
+.detached-card {
+  @apply mx-0 mt-4 border-t-4 border-[#6C147B];
+  ion-card-header {
+    @apply bg-[#6C147B] bg-gradient-to-br from-[#6C147B] to-[#780c6f] text-white;
+    background-image: url('../../assets/images/notes-pattern.png');
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: right;
+  }
+}
+
+.birthday-card {
+  @apply mx-0 mt-4 border-t-4 border-[#F2C216];
+  ion-card-header {
+    @apply bg-[#F2C216] bg-gradient-to-br from-[#F2C216] to-[#f3c82d] text-gray-900;
+    background-image: url('../../assets/images/birthday-pattern.png');
+    background-repeat: no-repeat;
+    background-size: 56%;
+    background-position: right;
+  }
+  ion-card-content {
+    @apply mt-3 text-base font-semibold;
   }
 }

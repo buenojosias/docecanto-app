@@ -4,10 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-list-header mode="ios">
-    <ion-label class="mt-0">
+<ion-content [fullscreen]="true">
+  <ion-list-header mode="ios" class="mt-2">
+    <ion-label>
       Olá, {{ name }}
     </ion-label>
   </ion-list-header>
@@ -28,34 +27,14 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card *ngIf="birthday" color="secondary" class="mx-0 mt-4">
-      <img src="../assets/images/birthday-ill.png" class="object-cover h-24 w-full" alt="">
-      <ion-card-content>
-        <ion-card-subtitle>Aniversariante do dia</ion-card-subtitle>
-        <ion-card-title>{{ birthday.short_name }}</ion-card-title>
+    <ion-card *ngIf="birthday" class="birthday-card">
+      <ion-card-header color="dark" class="py-2">
+        <ion-card-title>Aniversariante do dia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content color="dark">
+        {{ birthday.short_name }}
       </ion-card-content>
     </ion-card>
-
-
-    <!-- <div class="home-card md hydrated">
-      <div class="icon with-bg">
-        <ion-icon name="bookmark" slot="start"></ion-icon>
-      </div>
-      <div class="label">
-        <p>Músicas fixadas</p>
-      </div>
-    </div> -->
-
-    <!-- <ion-card *ngIf="event" color="light" class="mx-0 mt-4">
-      <ion-card-header>
-        <ion-card-title>Próximo evento</ion-card-title>
-      </ion-card-header>
-      <img src="../assets/images/callendar-ill.png" class="object-cover h-24 w-full" alt="">
-      <ion-card-content *ngIf="event">
-        <h2 class="font-semibold">{{ event.title }}</h2>
-        <p>{{ event.date | date: 'dd/MM/Y' }}</p>
-      </ion-card-content>
-    </ion-card> -->
 
     <ion-card *ngIf="event" class="mx-0 mt-4 border-l-4 border-amber-500">
       <ion-item lines="none" [routerLink]="['/eventos', event.id]">
@@ -69,9 +48,9 @@
       </ion-item>
     </ion-card>
 
-    <ion-card *ngIf="songs.length > 0" class="mx-0 mt-4 border-t-4 border-purple-600">
+    <ion-card *ngIf="songs.length > 0" class="detached-card">
       <!-- <img src="../assets/images/song-ill.jpg" class="object-cover h-24 w-full" alt=""> -->
-      <ion-card-header color="light">
+      <ion-card-header color="dark" class="py-2">
         <ion-card-title>Músicas fixadas</ion-card-title>
       </ion-card-header>
       <ion-card-content class="ion-no-padding">

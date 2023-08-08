@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <div class="loading" *ngIf="loading"><ion-spinner name="dots"></ion-spinner></div>
   <div *ngIf="event" class="ion-padding">
     <h1 class="font-semibold">{{ event.title }}</h1>
