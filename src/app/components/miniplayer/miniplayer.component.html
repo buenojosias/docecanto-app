@@ -6,8 +6,9 @@
       <ion-text class="text-sm">{{ currSecsText ?? '0:00'}}</ion-text>
     </div>
     <div class="grow">
+      <!-- <ion-range aria-label="Range"></ion-range> -->
       <input type="range" #range (input)="durationSlider(range.value)" [(ngModel)]="currRangeTime" min="0"
-        max="{{ maxRangeValue }}" [disabled]="!ready" class="w-full mt-2">
+        max="{{ maxRangeValue }}" [disabled]="!ready" class="range">
     </div>
     <div class="w-8 text-center">
       <ion-text class="text-sm">{{ durationText ?? '0:00'}}</ion-text>
