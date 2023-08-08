@@ -1,4 +1,3 @@
-<!-- VERSÃO 1 -->
 <ion-progress-bar *ngIf="buffering" type="indeterminate"></ion-progress-bar>
 <ion-toolbar class="p-4" id="player" color="light">
 
@@ -7,10 +6,8 @@
       <ion-text class="text-sm">{{ currSecsText ?? '0:00'}}</ion-text>
     </div>
     <div class="grow">
-      <ion-range *ngIf="ready" #range (touchmove)="touchMove" (touchend)="touchEnd" (touchstart)="touchStart"
-        max="{{maxRangeValue}}" [(ngModel)]="currRangeTime" aria-label="Range">
-      </ion-range>
-      <ion-range *ngIf="!ready" disabled aria-label="Range"></ion-range>
+      <input type="range" #range (input)="durationSlider(range.value)" [(ngModel)]="currRangeTime" min="0"
+        max="{{ maxRangeValue }}" [disabled]="!ready" class="w-full mt-2">
     </div>
     <div class="w-8 text-center">
       <ion-text class="text-sm">{{ durationText ?? '0:00'}}</ion-text>
@@ -18,7 +15,7 @@
   </div>
 
   <div class="w-full pb-2 flex justify-center items-center gap-4">
-    <ion-button *ngIf="ready" fill="clear">
+    <ion-button (click)="back()" *ngIf="ready" fill="clear">
       <!-- <ion-icon slot="icon-only" color="dark" src="../../../assets/icon/back-10.svg"></ion-icon> -->
       <ion-icon slot="icon-only" color="dark" name="play-back"></ion-icon>
     </ion-button>
@@ -28,37 +25,14 @@
     <ion-button (click)="pause()" fill="clear" *ngIf="isPlaying">
       <ion-icon name="pause" size="large"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="ready" fill="clear">
+    <ion-button (click)="forward()" *ngIf="ready" fill="clear">
       <!-- <ion-icon slot="icon-only" color="dark" src="../../../assets/icon/forward-10.svg"></ion-icon> -->
       <ion-icon slot="icon-only" color="dark" name="play-forward"></ion-icon>
     </ion-button>
   </div>
-
 </ion-toolbar>
-<!-- FIM VERSÃO 1 -->
 
-
-<!-- VERSÃO 2 -->
-<!-- <ion-toolbar>
-  <ion-button (click)="play()" fill="clear">
-    <ion-icon [name]="audio.paused ? 'play' : 'pause'" size="large"></ion-icon>
-  </ion-button>
-  <input type="range"
-    (input)="durationSlider($event)"
-    value="{{ audio.readyState === 0 ? 0 : audio.currentTime }}"
-    min="0"
-    max="{{ duration }}"
-  >
-  <ion-range
-    (input)="durationSlider($event)"
-    value="{{ audio.readyState === 0 ? 0 : audio.currentTime }}"
-    min="0"
-    max="{{ duration }}"
-    aria-label="Range"
-  ></ion-range>
-  <div class="time-text">
-    <ion-text>{{ musicLength }}</ion-text> /
-    <ion-text>{{ currentTime }}</ion-text>
-  </div>
-</ion-toolbar> -->
-<!-- FIM VERSÃO 2 -->
+<!-- <ion-range *ngIf="ready" #range (input)="durationSlider(range.value)" (touchmove)="touchMove()" (touchend)="touchEnd()"
+      (touchstart)="touchStart()" max="{{maxRangeValue}}" [(ngModel)]="currRangeTime" aria-label="Range">
+    </ion-range> -->
+<!-- <ion-range *ngIf="!ready" disabled aria-label="Range"></ion-range> -->

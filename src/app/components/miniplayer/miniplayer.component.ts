@@ -20,7 +20,6 @@ export class MiniplayerComponent implements OnInit {
     }
   }
 
-  // VERSÃO 1
   @ViewChild("range", { static: false }) range: IonRange;
   ready = false;
   buffering = false;
@@ -29,7 +28,7 @@ export class MiniplayerComponent implements OnInit {
   isTouched = false; //track of ion-range touch
   currSecsText: any; //ion range texts
   durationText: any;
-  currRangeTime: any; //ion range value
+  currRangeTime: any = 0; //ion range value
   maxRangeValue: any;
   currSong: HTMLAudioElement; //Current song
   play() {
@@ -50,7 +49,6 @@ export class MiniplayerComponent implements OnInit {
     if (this.currSong != null) {
       this.currSong.pause();
     }
-    // this.currSong = new Audio(this.songUrl);
     this.currSong.play().then(() => {
       this.buffering = false;
       this.ready = true;
@@ -77,65 +75,17 @@ export class MiniplayerComponent implements OnInit {
   padZero(v: any) {
     return (v < 10) ? "0" + v : v;
   }
-  touchStart() {
-    this.isTouched = true;
-    this.currSecsText = this.sToTime(this.range.value);
-    this.currRangeTime = Number(this.range.value); console.log(this.currRangeTime);
-    this.currSong.currentTime = Number(this.currRangeTime); console.log(this.currSong.currentTime);
-  }
-  touchMove() {
-    this.currSecsText = this.sToTime(this.range.value);
-  }
-  touchEnd() {
-    this.isTouched = false;
-    this.currSong.currentTime = Number(this.range.value);
-    this.currSecsText = this.sToTime(this.currSong.currentTime);
-    this.currRangeTime = this.currSong.currentTime;
-    if (this.isPlaying) {
-      this.currSong.play();
-    }
-  }
-  // FIM DA VERSÃO 1
 
-
-  // VERSÃO 2
-  /*audio = new Audio();
-  musicLength: string = '0:00';
-  duration: number = 1;
-  currentTime: string = '0:00';
-  constructor() {
-    this.audio.ondurationchange = () => {
-      const totalSeconds = Math.floor(this.audio.duration),
-        duration = moment.duration(totalSeconds, 'seconds');
-      this.musicLength = duration.seconds() < 10 ?
-        `${Math.floor(duration.asMinutes())}:0${duration.seconds()}` :
-        `${Math.floor(duration.asMinutes())}:${duration.seconds()}`;
-      this.duration = totalSeconds;
-    }
-    this.audio.ontimeupdate = () => {
-      const duration = moment.duration(
-        Math.floor(this.audio.currentTime), 'seconds');
-      this.currentTime = duration.seconds() < 10 ?
-        `${Math.floor(duration.asMinutes())}:0${duration.seconds()}` :
-        `${Math.floor(duration.asMinutes())}:${duration.seconds()}`;
-    }
+  durationSlider(value: any) {
+    this.currSong.currentTime = value;
   }
-  play() {
-    if(this.audio.paused) {
-      if(this.audio.readyState === 0) {
-        this.audio.src = this.songUrl;
-      }
-      this.audio.play();
-    } else {
-      this.audio.pause();
-    }
+
+  forward() {
+    this.currSong.currentTime += 5;
+    console.log(this.currSong.currentTime);
   }
-  durationSlider(event: any) {
-    var range = event.timeStamp;
-    console.log(range);
-    this.audio.currentTime = range;
-  }*/
-  // FIM DA VERSÃO 2
 
-
+  back() {
+    this.currSong.currentTime -= 5;
+  }
 }
