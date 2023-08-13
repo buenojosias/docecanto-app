@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { AppLauncher } from '@capacitor/app-launcher';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-menu',
@@ -20,21 +21,30 @@ export class MenuPage implements OnInit {
   ngOnInit() {
   }
 
-  async openFacebook() {
-    const { value } = await AppLauncher.canOpenUrl({ url: 'com.facebook.katana' });
-    console.log('Can open url: ', value);
-    await AppLauncher.openUrl({ url: 'com.facebook.katana://page?id=1446618195568418' });
+  async openExternalApp(url: string) {
+    await Browser.open({ url: url });
+    // const canOpen = AppLauncher.canOpenUrl({ url: 'com.facebook.katana' });
+    // await AppLauncher.openUrl({ url: 'com.instagram.android' });
+    // await AppLauncher.openUrl({ url: 'com.facebook.katana://page?id=1446618195568418' });
+    // console.log(canOpen);
   }
+
+  // async openFacebook() {
+  //   const { value } = await AppLauncher.canOpenUrl({ url: 'com.facebook.katana' });
+  //   console.log('Can open url: ', value);
+  //   await AppLauncher.openUrl({ url: 'com.facebook.katana://page?id=1446618195568418' });
+  // }
 
   async openInstagram() {
     const { value } = await AppLauncher.canOpenUrl({ url: 'com.instagram.android' });
+    await AppLauncher.openUrl({ url: 'com.facebook.katana://page?id=1446618195568418' });
     console.log('Can open url: ', value);
   }
 
-  async openYoutube() {
-    const { value } = await AppLauncher.canOpenUrl({ url: 'com.google.android.youtube' });
-    console.log('Can open url: ', value);
-  }
+  // async openYoutube() {
+  //   const { value } = await AppLauncher.canOpenUrl({ url: 'com.google.android.youtube' });
+  //   console.log('Can open url: ', value);
+  // }
 
   async logout() {
     await this.authService.doLogout().subscribe(

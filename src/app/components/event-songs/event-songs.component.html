@@ -1,13 +1,14 @@
-<ion-accordion-group (ionChange)="accordionGroupChange($event)" class="mx-2">
+<ion-card>
+<ion-accordion-group (ionChange)="accordionGroupChange($event)">
   <ion-accordion value="songs">
-    <ion-item slot="header" color="light">
-      <h4>Músicas</h4>
+    <ion-item slot="header" color="secondary">
+      <h4 class="ion-no-margin">Músicas</h4>
     </ion-item>
     <div class="border-b" slot="content">
       <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
       <ion-list *ngIf="loaded && songs.length" class="ion-no-padding">
-        <ion-item *ngFor="let song of songs" lines="none" class="ion-no-padding" detail [routerLink]="['/musicas', song.number]">
-          <div class="px-2 text-md font-semibold">{{ song.number }}</div>
+        <ion-item *ngFor="let song of songs" lines="none" class="" detail [routerLink]="['/musicas', song.number]">
+          <div class="pr-2 text-md font-semibold">{{ song.number }}</div>
           <ion-label>
             <h2>{{ song.title }}</h2>
           </ion-label>
@@ -17,3 +18,4 @@
     </div>
   </ion-accordion>
 </ion-accordion-group>
+</ion-card>
